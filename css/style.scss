@@ -1,0 +1,133 @@
+$color01:#cd659f;
+$color02:#829ac8;
+$color03:#77c2b9;
+$color04:#E8F0C5;
+
+$bg_color :#FBE3F1;
+$main_color:#004f7a;
+
+body {
+    background: #dae6bb;
+    font-family: "Zen Maru Gothic", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.grade {
+    background: $color01;
+    background: linear-gradient(90deg, rgba($color01,1) 0%, rgba($color02,1) 100%);
+}
+.phone {
+    width: 596px;
+    height: 982px;
+    margin: 0 auto;
+    position: relative;
+    &:after {
+        display: block;
+        width: 100%;
+        height: 100%;
+        content: "";
+        background: url("../img/bg.png");
+        position: absolute;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+
+    }
+}
+.screen {
+    width: 375px;
+    height: 728px;
+    background: #fff;
+    position: relative;
+    left: 109px;
+    top: 128px;
+    padding: 30px 20px 30px;
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+.inner {
+  height: 668px;
+  overflow-y: scroll;
+  padding: 0 5px 0 10px;
+}
+.menu {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    right: 0;
+    background: $color01;
+    background: linear-gradient(90deg, rgba($color01,.9) 0%, rgba($color02,.9) 100%);
+    display: none;
+    padding: 80px 60px;
+    box-sizing: border-box;
+    border-radius: 30px;
+
+    li {
+        margin-bottom: 70px;
+    }
+    a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 16px;
+        border-bottom: 2px solid #fff;
+        padding: 0 10px 12px;
+        letter-spacing: 0.2em;
+    }
+}
+#btn_menu,#btn_close {
+    position: absolute;
+    right: 30px;
+    top: 10px;
+    cursor:pointer;
+    text-decoration: none;
+}
+
+.goal_area {
+    padding: 30px 20px;
+    margin-bottom: 20px;
+    background: linear-gradient(90deg, rgba($color01,.3) 0%, rgba($color02,.3) 100%);
+    table {
+        width: 100%;
+    }
+    tr {
+        border-bottom: 4px solid $main_color;
+        font-weight: bold;
+
+        th {
+            padding: 20px 0 10px 10px;
+            color: $main_color;
+            text-align: left;
+            font-size: 20px;
+            width: 50%;
+        }
+        .emphasis {
+            color: #cd659f;
+            font-size: 35px;
+        }
+        td {
+            padding: 20px 10px 10px 0;
+            color: $main_color;
+            text-align: right;
+            font-size: 20px;
+            width: 50%;
+        }
+    }
+}
+.btn {
+    margin-bottom: 20px;
+    a { 
+        font-weight: bold;
+        display: block;
+        text-decoration: none;
+        text-align: center;
+        font-size: 23px;
+        color: #fff;
+        width: 100%;
+        height: 86px;
+        line-height: 86px;
+        background: linear-gradient(90deg, rgba($color01,1) 0%, rgba($color02,1) 100%);
+    }
+}
