@@ -5,7 +5,7 @@ $title = "個人データ登録";
 <html lang="en">
 <?php include("tpl/head.php"); ?>
 
-<body>
+<body class="input">
     <?php
     include("tpl/header.php");
     ?>
@@ -16,12 +16,15 @@ $title = "個人データ登録";
 
                 <h1>個人データ入力</h1>
                 <form action="insert.php" method="post" enctype="multipart/form-data">
-                    身長：<input type="text" name="cm"> cm<br>
-                    体重：<input type="text" name="start_kg"> kg<br>
-
-                    目標体重：<input type="text" name="goal_kg"> kg<br>
-                    いつまでに痩せたい?：<input type="date" name="goal_day"><br>
-                    <input type="submit" value="計算ボタン">
+                    <h2>身長：</h2>
+                    <label for=""><input type="text" name="cm"> cm</label>
+                    <h2>体重：</h2>
+                    <label for=""><input type="text" name="start_kg"> kg</label>
+                    <h2>目標体重：</h2>
+                    <label for=""><input type="text" name="goal_kg"> kg</label>
+                    <h2>いつまでに痩せたい?：</h2>
+                    <label for=""><input type="date" name="goal_day"></label>
+                    <label for=""><input type="submit" value="計算ボタン" class="submit btn"></label>
                 </form>
 
 

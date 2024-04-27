@@ -32,9 +32,27 @@ $v =  $stmt->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できるモ
 $values2 =  $stmt2->fetchAll(PDO::FETCH_ASSOC); //PDO::FETCH_ASSOC[カラム名のみで取得できるモード]
 $json2 = json_encode($values2, JSON_UNESCAPED_UNICODE);
 $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できるモード]
+$goal_kg = $v["goal_kg"];
 
-
-
+function bmi()
+{
+    $cm = isset($v["cm"]) ? intval($v["cm"]) : 0;
+    $kg = isset($tv["todays_weight"]) ? intval($tv["todays_weight"]) : 0;
+    $br = "<br>";
+    if ($kg === 0 or $cm === 0) {
+        print '入力が不正です';
+    } else {
+        $bmi = round(($kg * 10000)  / ($cm * $cm), 2);
+        print $cm . "センチ" . $kg . "キログラムのあなたのBMIは" . $bmi . "です。" . $br;
+        if ($bmi >= 25.0) {
+            fat();
+        } else if ($bmi < 18.5) {
+            thin();
+        } else {
+            normal();
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -55,13 +73,21 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
                             <h1>マイページ</h1>
                             <div class="goal_area grade_area">
                                 <table>
+                                <tr>
+                                    <th>体重</th>
+                                    <td><span class="emphasis"><?=$tv["todays_weight"]?></span><span>kg</span></td>
+                                  </tr>
+                                  <!-- <tr>
+                                    <th>BMI</th>
+                                    <td><span class="emphasis"><?php bmi(); ?></span></td>
+                                  </tr> -->
                                     <tr>
                                         <th>目標まで</th>
                                         <td><span>あと</span><span class="emphasis"><?= round($tv["todays_weight"] - $v["goal_kg"], 2) ?></span><span>kg</span>
                                     </tr>
                                     <tr>
                                         <th>スタートから</th>
-                                        <td><span></span><span><span class="emphasis"><?= round($v["start_kg"] - $tv["todays_weight"], 2) ?></span>減</span></td>
+                                        <td><span></span><span><span class="emphasis"><?= round($v["start_kg"] - $tv["todays_weight"], 2) ?></span>kg減</span></td>
                                     </tr>
                                     <tr>
                                         <th>達成率</th>
@@ -71,7 +97,7 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
                             </div>
                         <?php } ?>
                         <?php } ?><?php } ?>
-                        <p class="btn"><a href="#">今日の記録</a></p>
+                        <p class="btn"><a href="<?= $path ?>mypage/todayrecord.php">今日の記録</a></p>
                         <p class="btn"><a href="<?= $path ?>mypage/graph.php">グラフ</a></p>
 
                         <?php include("../tpl/sidebar.php"); ?>
@@ -81,43 +107,7 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
 
     <!-- <canvas id="myChart"></canvas> -->
     <?php include("../tpl/footer.php"); ?>
-    <?php
-    $goal_kg = $v["goal_kg"];
-    $cm = isset($v["cm"]) ? intval($v["cm"]) : 0;
-    $kg = isset($tv["todays_weight"]) ? intval($tv["todays_weight"]) : 0;
-    $br = "<br>";
-    function fat()
-    {
-        print "太り気味です";
-        echo "<br>";
-    }
-    function thin()
-    {
-        print 'やせ気味です';
-        echo "<br>";
-    }
-    function normal()
-    {
-        print '標準体型です';
-        echo "<br>";
-    }
-    if ($kg === 0 or $cm === 0) {
-        print '入力が不正です';
-    } else {
-        $bmi = round(($kg * 10000)  / ($cm * $cm), 2);
-        print $cm . "センチ" . $kg . "キログラムのあなたのBMIは" . $bmi . "です。" . $br;
-        if ($bmi >= 25.0) {
-            fat();
-        } else if ($bmi < 18.5) {
-            thin();
-        } else {
-            normal();
-        }
-    }
-    $to_goal = $tv["todays_weight"] - $v["goal_kg"];
-    print "目標まで" . $to_goal . "kgです" . $br;
 
-    ?>
 
 </body>
 

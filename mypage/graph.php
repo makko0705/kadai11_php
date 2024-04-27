@@ -47,9 +47,9 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
             <div class="inner">
                             <h1>ダイエットの推移</h1>
 
-                <?php foreach ($values as $v) { ?> <?php foreach ($values2 as $tv) { ?>
+                <!-- <?php foreach ($values as $v) { ?> <?php foreach ($values2 as $tv) { ?>
                         <?php if ($v === end($values)) { ?>
-                            <!-- <div class="goal_area grade_area">
+                            <div class="goal_area grade_area">
                                 <table>
                                     <tr>
                                         <th>身長</th>
@@ -64,11 +64,11 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
                                         <td><?= h($tv["todays_weight"]) ?></td>
                                     </tr>
                                 </table>
-                            </div> -->
+                            </div>
                         <?php } ?>
-                        <?php } ?><?php } ?>
-                        <p class="btn"><a href="todayrecord.php">今日の記録</a></p>
-                        <canvas id="myChart"></canvas>
+                        <?php } ?><?php } ?> -->
+                        <canvas id="myChart" class="graph"></canvas>
+                        <canvas id="myChart_fat" class="graph"></canvas>
                         <?php
                         include("../tpl/sidebar.php");
                         ?>
@@ -95,26 +95,44 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
         console.log(len);
         // console.log(obj.len.start_kg);
 
+        // for (let a in obj) { //for (変数名 in オブジェクト)
+        //     // console.log(obj[id]);
+        //     console.log(obj.id);
+        //     console.log(obj[a].start_kg);
+        //     console.log(obj[a].indate);
+
+        //     kg_data.push(obj[a].start_kg);
+        //     while_indate.push(obj[a].indate);
+        // }
+        // console.log(kg_data, "kg_dataの中身です");
+        // console.log(while_indate, "while_indateの中身です");
+
         let kg_data = [];
         let while_indate = [];
-        for (let a in obj) { //for (変数名 in オブジェクト)
-            // console.log(obj[id]);
-            console.log(obj.id);
-            console.log(obj[a].start_kg);
-            console.log(obj[a].indate);
-
-            kg_data.push(obj[a].start_kg);
-            while_indate.push(obj[a].indate);
-        }
-        console.log(kg_data, "kg_dataの中身です");
-        console.log(while_indate, "while_indateの中身です");
-
+        let fat_data = [];
 
         const b = '<?php echo $json2; ?>';
         const obj_b = JSON.parse(b);
         console.log(b, "bの中身です");
 
+        console.log(obj_b[0],"obj_b[0]のなかみ");
+        console.log(obj_b[0].todays_weight,"obj_b[0].todays_weightの中身");
 
+        for (let b in obj_b) { //for (変数名 in オブジェクト)
+            // console.log(obj[id]);
+            console.log(obj_b.id);
+            console.log(obj_b[b].todays_weight);
+            console.log(obj_b[b].indate);
+            console.log(obj_b[b].todays_fat);
+
+            kg_data.push(obj_b[b].todays_weight);
+            fat_data.push(obj_b[b].todays_fat);
+            while_indate.push(obj[b].indate);
+
+        }
+        console.log(kg_data);
+        console.log(fat_data);
+        console.log(while_indate);
 
 
         var ctx = document.getElementById("myChart");
@@ -123,17 +141,22 @@ $tv =  $stmt2->fetch(); //PDO::FETCH_ASSOC[カラム名のみで取得できる�
             data: {
                 labels: while_indate,
                 datasets: [{
-                    label: 'Carp',
+                    label: '体重の推移',
                     data: kg_data,
                     borderColor: '#829ac8',
                 }],
             },
-            options: {
-                scales: {
-                    y: {
-                        reverse: true,
-                    },
-                },
+        });
+        var ctx = document.getElementById("myChart_fat");
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: while_indate,
+                datasets: [{
+                    label: '体脂肪の推移',
+                    data: fat_data,
+                    borderColor: '#cd659f',
+                }],
             },
         });
     </script>

@@ -11,6 +11,7 @@ body {
     font-family: "Zen Maru Gothic", serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 16px;
 }
 .grade {
     background: $color01;
@@ -48,9 +49,17 @@ body {
 }
 .inner {
   height: 668px;
-  overflow-y: scroll;
-  padding: 0 5px 0 10px;
+  overflow-y: auto;
+  padding: 35px 5px 0 10px;
 }
+h1 {
+  color: $color01;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  font-size: 18px;
+}
+
 .menu {
     width: 100%;
     height: 100%;
@@ -85,7 +94,7 @@ body {
     text-decoration: none;
 }
 
-.goal_area {
+.grade_area {
     padding: 30px 20px;
     margin-bottom: 20px;
     background: linear-gradient(90deg, rgba($color01,.3) 0%, rgba($color02,.3) 100%);
@@ -130,4 +139,34 @@ body {
         line-height: 86px;
         background: linear-gradient(90deg, rgba($color01,1) 0%, rgba($color02,1) 100%);
     }
+}
+.submit.btn {
+  background: linear-gradient(90deg, rgba($color01,1) 0%, rgba($color02,1) 100%);
+  width: 100%;
+  height: 43px;
+  // line-height: 43px;
+  border: none;
+  color: #fff;
+  width:268px;
+  margin: 0 auto;
+  display: block;
+}
+.input {
+  h2 {
+    color: #004f7a;
+    margin-bottom: 10px;
+  }
+  label {
+    margin-bottom: 20px;
+    display: block;
+  }
+  input {
+    width: 92%;
+    padding: 7px;
+    box-sizing: border-box;
+  }
+}
+//*********graph*********//
+.graph {
+  margin-bottom: 20px;
 }

@@ -27,6 +27,20 @@ $status = $stmt->execute(); //実行
 
             <h1>今日の体重を登録しました</h1>
             <?php include("../tpl/sidebar.php");?>
+            <div class="grade_area">
+            <table>
+            <tr>
+                <th>体重</th>
+                <td><span class="emphasis"><?=$todays_weight?></span><span>kg</span></td>
+              </tr>
+              <tr>
+                <th>体脂肪率</th>
+                <td><span class="emphasis"><?=$todays_fat?></span><span>%</span></td>
+              </tr>
+            </table>
+            
+            
+            </div>
             </div>
         </div>
     </div>
